@@ -62,7 +62,7 @@
     "semantic-release-helm3": "^2.10.0",
     "tsx": "^4.19.0",
     "typescript": "^5.9.2",
-    "vitest": "^3.0.0"
+    "vitest": "^4.0.18"
   },
   "engines": {
     "node": ">=20.11.1",
