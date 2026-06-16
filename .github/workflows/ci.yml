@@ -42,7 +42,19 @@ jobs:
       - name: Type Check
         run: npm run type-check
 
+
+      - name: Guard — skip if template not yet instantiated
+        id: guard
+        run: |
+          if grep -rq '{{' src/app/page.tsx package.json 2>/dev/null; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "⚠️  Unresolved template placeholders — skipping build."
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Build
+        if: steps.guard.outputs.skip == 'false'
         run: npm run build
 
   release:
@@ -66,7 +78,19 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+
+      - name: Guard — skip if template not yet instantiated
+        id: guard
+        run: |
+          if grep -rq '{{' src/app/page.tsx package.json 2>/dev/null; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "⚠️  Unresolved template placeholders — skipping build."
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Build
+        if: steps.guard.outputs.skip == 'false'
         run: npm run build
 
       - name: Authenticate to Google Cloud
