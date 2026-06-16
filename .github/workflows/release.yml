@@ -17,20 +17,32 @@ jobs:
     name: Semantic Release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
           submodules: recursive
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
           node-version: '24'
           cache: npm
 
+      - name: Guard — skip if template not yet instantiated
+        id: guard
+        run: |
+          if grep -rq '{{' package.json .releaserc.* src/app/page.tsx 2>/dev/null; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "⚠️  Unresolved template placeholders detected — skipping release."
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Install dependencies
+        if: steps.guard.outputs.skip == 'false'
         run: npm ci
 
       - name: Release
+        if: steps.guard.outputs.skip == 'false'
         run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
