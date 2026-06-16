@@ -68,11 +68,7 @@
     "node": ">=20.11.1",
     "npm": ">=10.5.0"
   },
-  "prettier": {
-    "printWidth": 120,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
+  "prettier": "./.shared-tooling/prettier/base.json",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
