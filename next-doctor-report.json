@@ -1,0 +1,436 @@
+{
+  "repoPath": "/Users/marvin/Workspace/tmp-upgrade/nextjs-webapp-template",
+  "templatePath": "/Users/marvin/Workspace/tmp-upgrade/nextjs-webapp-template",
+  "generatedAt": "2026-06-10T04:25:33.696Z",
+  "results": [
+    {
+      "id": "next.config-present",
+      "description": "A `next.config.*` file is present",
+      "severity": "error",
+      "passed": true,
+      "message": "next.config.mjs present",
+      "fixable": false
+    },
+    {
+      "id": "structure.app-router",
+      "description": "Uses the App Router under `src/app/` (no legacy `pages/`)",
+      "severity": "warn",
+      "passed": true,
+      "message": "App Router in src/app/ with no legacy pages/",
+      "fixable": false
+    },
+    {
+      "id": "structure.tsconfig",
+      "description": "`tsconfig.json` present",
+      "severity": "error",
+      "passed": true,
+      "message": "tsconfig.json present",
+      "fixable": false
+    },
+    {
+      "id": "structure.type-check-script",
+      "description": "package.json has a type-check script running `tsc --noEmit`",
+      "severity": "warn",
+      "passed": true,
+      "message": "type-check script present",
+      "fixable": false
+    },
+    {
+      "id": "seo.metadata",
+      "description": "Root `layout.tsx` exports `metadata` with `title` and `description`",
+      "severity": "warn",
+      "passed": true,
+      "message": "src/app/layout.tsx exports metadata with title and description.",
+      "fixable": false
+    },
+    {
+      "id": "chakra.deps",
+      "description": "Chakra UI + Emotion are the UI dependency baseline",
+      "severity": "error",
+      "passed": true,
+      "message": "Chakra UI + Emotion present",
+      "fixable": false
+    },
+    {
+      "id": "chakra.provider",
+      "description": "Chakra provider component present",
+      "severity": "warn",
+      "passed": true,
+      "message": "src/providers/ChakraProviders.tsx present",
+      "fixable": false
+    },
+    {
+      "id": "chakra.theme",
+      "description": "A Chakra theme module is defined",
+      "severity": "info",
+      "passed": true,
+      "message": "src/theme.ts present",
+      "fixable": false
+    },
+    {
+      "id": "ui.no-shadcn",
+      "description": "No shadcn/Tailwind stack (Chakra is the standard)",
+      "severity": "warn",
+      "passed": true,
+      "message": "No shadcn/Tailwind stack detected",
+      "fixable": false
+    },
+    {
+      "id": "prisma.schema",
+      "description": "Prisma schema present (`prisma/schema.prisma`)",
+      "severity": "error",
+      "passed": true,
+      "message": "prisma/schema.prisma present",
+      "fixable": false
+    },
+    {
+      "id": "prisma.deps",
+      "description": "`@prisma/client` + `prisma` declared",
+      "severity": "error",
+      "passed": true,
+      "message": "Prisma deps present",
+      "fixable": false
+    },
+    {
+      "id": "prisma.db-scripts",
+      "description": "Database scripts present (`db:generate`, `db:migrate`, `db:seed`)",
+      "severity": "warn",
+      "passed": true,
+      "message": "Prisma db:* scripts present",
+      "fixable": false
+    },
+    {
+      "id": "prisma.migrations",
+      "description": "`prisma/migrations/` exists when `prisma/schema.prisma` is present",
+      "severity": "warn",
+      "passed": true,
+      "message": "prisma/migrations/ present.",
+      "fixable": false
+    },
+    {
+      "id": "eslint.config",
+      "description": "ESLint config present and wired to Next + Prettier",
+      "severity": "error",
+      "passed": true,
+      "message": ".eslintrc.json present and wired to Next + Prettier",
+      "fixable": false
+    },
+    {
+      "id": "lint.script",
+      "description": "package.json has a `lint` script",
+      "severity": "warn",
+      "passed": true,
+      "message": "lint script present",
+      "fixable": false
+    },
+    {
+      "id": "prettier.config",
+      "description": "Prettier configured (printWidth 120, singleQuote, trailingComma es5)",
+      "severity": "warn",
+      "passed": true,
+      "message": "Prettier configured (package.json#prettier)",
+      "fixable": false
+    },
+    {
+      "id": "husky.hooks",
+      "description": "Husky hooks present (`.husky/pre-commit` + `.husky/commit-msg`)",
+      "severity": "warn",
+      "passed": true,
+      "message": "Husky hooks present",
+      "fixable": false
+    },
+    {
+      "id": "commitlint.config",
+      "description": "Commitlint config present",
+      "severity": "warn",
+      "passed": true,
+      "message": "commitlint.config.cjs present",
+      "fixable": false
+    },
+    {
+      "id": "lint-staged.config",
+      "description": "lint-staged configured (file or package.json field)",
+      "severity": "warn",
+      "passed": true,
+      "message": "lint-staged configured (package.json)",
+      "fixable": false
+    },
+    {
+      "id": "release.config",
+      "description": "semantic-release config present",
+      "severity": "warn",
+      "passed": true,
+      "message": "release.config.cjs present with semantic-release",
+      "fixable": false
+    },
+    {
+      "id": "release.helm-plugin",
+      "description": "Helm release plugin present (`semantic-release-helm3`)",
+      "severity": "info",
+      "passed": true,
+      "message": "semantic-release-helm3 present",
+      "fixable": false
+    },
+    {
+      "id": "ci.workflow",
+      "description": "CI workflow runs lint + type-check + build (and release on main)",
+      "severity": "warn",
+      "passed": true,
+      "message": "CI runs lint, type-check, build, release",
+      "fixable": false
+    },
+    {
+      "id": "helm.chart",
+      "description": "Helm chart present (`chart/`)",
+      "severity": "warn",
+      "passed": true,
+      "message": "chart/ present",
+      "fixable": false
+    },
+    {
+      "id": "flux.gitops",
+      "description": "Flux GitOps manifests present (`flux/`)",
+      "severity": "info",
+      "passed": true,
+      "message": "flux/ present",
+      "fixable": false
+    },
+    {
+      "id": "test.vitest-config",
+      "description": "Vitest config present",
+      "severity": "warn",
+      "passed": true,
+      "message": "vitest.config.ts present",
+      "fixable": false
+    },
+    {
+      "id": "test.scripts",
+      "description": "Test scripts present (`test` and `test:run`)",
+      "severity": "warn",
+      "passed": true,
+      "message": "test + test:run scripts present",
+      "fixable": false
+    },
+    {
+      "id": "test.has-tests",
+      "description": "At least one test file exists",
+      "severity": "info",
+      "passed": true,
+      "message": "1 test file(s) found",
+      "fixable": false
+    },
+    {
+      "id": "node.engines",
+      "description": "package.json pins `engines.node` (and ideally `engines.npm`)",
+      "severity": "warn",
+      "passed": true,
+      "message": "Node version pinned",
+      "fixable": false
+    },
+    {
+      "id": "gitignore.report",
+      "description": "`next-doctor-report.md` is listed in `.gitignore`",
+      "severity": "warn",
+      "passed": true,
+      "message": "next-doctor-report.md is gitignored.",
+      "fixable": true
+    },
+    {
+      "id": "env.zod-schema",
+      "description": "A Zod-validated env schema exists (`src/env.ts` or similar)",
+      "severity": "info",
+      "passed": false,
+      "message": "No Zod-validated env schema found.",
+      "remediation": "Add src/env.ts that imports from 'zod' and exports a validated env object (e.g. via z.object({}).parse(process.env)).",
+      "fixable": false
+    },
+    {
+      "id": "env.example",
+      "description": "`.env.example` exists",
+      "severity": "info",
+      "passed": true,
+      "message": ".env.example present",
+      "fixable": true
+    },
+    {
+      "id": "devcontainer.config",
+      "description": "`.devcontainer/devcontainer.json` exists",
+      "severity": "info",
+      "passed": true,
+      "message": ".devcontainer/devcontainer.json present",
+      "fixable": true
+    },
+    {
+      "id": "taskfile.present",
+      "description": "`Taskfile.yml` exists",
+      "severity": "info",
+      "passed": true,
+      "message": "Taskfile.yml present",
+      "fixable": true
+    },
+    {
+      "id": "docs.present",
+      "description": "Deployment docs present (`docs/DEPLOYMENT.md`)",
+      "severity": "info",
+      "passed": true,
+      "message": "docs/DEPLOYMENT.md present",
+      "fixable": false
+    },
+    {
+      "id": "security.dependabot",
+      "description": "Dependabot configured and covers the npm ecosystem",
+      "severity": "error",
+      "passed": true,
+      "message": "Dependabot covers npm",
+      "fixable": true
+    },
+    {
+      "id": "security.code-scanning",
+      "description": "A code-scanning / SAST workflow is configured",
+      "severity": "warn",
+      "passed": false,
+      "message": "No code-scanning/SAST workflow detected",
+      "remediation": "Add a CodeQL (or Trivy/Snyk/gitleaks) scanning workflow.",
+      "fixable": false
+    },
+    {
+      "id": "security.lockfile",
+      "description": "`package-lock.json` is committed (deterministic installs)",
+      "severity": "error",
+      "passed": false,
+      "message": "No lockfile committed",
+      "remediation": "Commit package-lock.json (npm install) for deterministic, auditable installs.",
+      "fixable": false
+    },
+    {
+      "id": "security.no-audit-suppression",
+      "description": "npm audit is not disabled via .npmrc",
+      "severity": "warn",
+      "passed": true,
+      "message": "npm audit not suppressed",
+      "fixable": false
+    },
+    {
+      "id": "security.secret-hygiene",
+      "description": "`.env*` ignored and no secret files committed",
+      "severity": "error",
+      "passed": true,
+      "message": ".env* ignored and no secret files committed",
+      "fixable": false
+    },
+    {
+      "id": "security.csp",
+      "description": "`next.config.*` sets a `Content-Security-Policy` header",
+      "severity": "info",
+      "passed": false,
+      "message": "No Content-Security-Policy header found in next.config.",
+      "remediation": "Add a headers() function to next.config that sets Content-Security-Policy.",
+      "fixable": false
+    },
+    {
+      "id": "infra.cdn-vars",
+      "description": "Deploy/release workflows source CDN/GCP config from repo variables",
+      "severity": "warn",
+      "passed": true,
+      "message": "No release/deploy workflow; CDN var check not applicable.",
+      "fixable": false
+    },
+    {
+      "id": "infra.gcp-auth",
+      "description": "Deploy/release workflow authenticates to GCP via secrets",
+      "severity": "warn",
+      "passed": true,
+      "message": "No release/deploy workflow; GCP auth check not applicable.",
+      "fixable": false
+    },
+    {
+      "id": "infra.action-majors",
+      "description": "GitHub Action majors meet the supported baseline",
+      "severity": "warn",
+      "passed": true,
+      "message": "All checked GitHub Action majors meet the baseline",
+      "fixable": false
+    },
+    {
+      "id": "infra.codeowners",
+      "description": "`.github/CODEOWNERS` present and non-empty",
+      "severity": "warn",
+      "passed": true,
+      "message": ".github/CODEOWNERS present",
+      "fixable": true
+    },
+    {
+      "id": "infra.secret-provider",
+      "description": "Helm chart wires Google Secret Manager (secret-provider) + cert-manager",
+      "severity": "info",
+      "passed": true,
+      "message": "Helm chart wires Secret Manager + cert-manager",
+      "fixable": false
+    },
+    {
+      "id": "infra.dockerignore",
+      "description": "`.dockerignore` present and excludes node_modules/.env",
+      "severity": "warn",
+      "passed": true,
+      "message": ".dockerignore excludes node_modules and .env",
+      "fixable": false
+    },
+    {
+      "id": "shared-tooling.submodule",
+      "description": "`.shared-tooling/` submodule is present and initialized",
+      "severity": "warn",
+      "passed": false,
+      "message": "No .gitmodules file. Project uses inline configs (legacy pattern).",
+      "remediation": "Run the shared-tooling migration: .shared-tooling/scripts/migrate-project.sh",
+      "fixable": false
+    },
+    {
+      "id": "shared-tooling.configs-delegated",
+      "description": "Config files delegate to `.shared-tooling` (not inline duplicates)",
+      "severity": "info",
+      "passed": true,
+      "message": "No .shared-tooling submodule; skipping delegation check.",
+      "fixable": false
+    },
+    {
+      "id": "cursor.rules-baseline",
+      "description": "Baseline `.cursor/rules` from shared-tooling are symlinked",
+      "severity": "warn",
+      "passed": false,
+      "message": "No .cursor/rules directory.",
+      "remediation": "Run `next-doctor apply` to create symlinks from .shared-tooling.",
+      "fixable": true
+    },
+    {
+      "id": "cursor.skills-baseline",
+      "description": "Baseline agent skills from shared-tooling are symlinked",
+      "severity": "info",
+      "passed": false,
+      "message": "No skills directory (.cursor/skills or skills/).",
+      "remediation": "Run `next-doctor apply` to create symlinks from .shared-tooling.",
+      "fixable": true
+    },
+    {
+      "id": "cursor.hooks-baseline",
+      "description": "Cursor hooks configured (`.cursor/hooks.json`)",
+      "severity": "info",
+      "passed": true,
+      "message": "Cursor hooks present.",
+      "fixable": true
+    },
+    {
+      "id": "copyright.futurehax-range",
+      "description": "FutureHax copyright notices use the 2011–YYYY range",
+      "severity": "warn",
+      "passed": true,
+      "message": "All FutureHax copyright notices start from 2011.",
+      "fixable": true
+    }
+  ],
+  "summary": {
+    "errors": 1,
+    "warnings": 3,
+    "infos": 3,
+    "passed": 45
+  }
+}

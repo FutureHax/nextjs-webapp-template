@@ -1,0 +1,3 @@
+[submodule ".shared-tooling"]
+	path = .shared-tooling
+	url = https://github.com/FutureHax/futurehax-shared-tooling.git

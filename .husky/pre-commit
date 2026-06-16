@@ -1,1 +1,1 @@
-npx lint-staged
+./.shared-tooling/husky/pre-commit.sh
