@@ -14,7 +14,7 @@ export default function Home() {
             bgGradient="linear(to-r, blue.400, purple.500, pink.500)"
             bgClip="text"
           >
-            {{APP_TITLE}}
+            {'{{APP_TITLE}}'}
           </Heading>
           
           <Text fontSize="xl" color="gray.400" maxW="2xl">
