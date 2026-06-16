@@ -7,9 +7,8 @@ async function main() {
 
   // Upsert helper function
   const upsert = async <T extends Record<string, unknown>>(
-    model: {
-      upsert: (args: { where: Record<string, unknown>; update: T; create: T }) => Promise<unknown>;
-    },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    model: { upsert: (args: any) => Promise<unknown> },
     where: Record<string, unknown>,
     data: T
   ) => {
