@@ -1,0 +1,49 @@
+---
+description: Enforce GitHub issue creation and closeout workflow
+globs: ["**/*"]
+alwaysApply: true
+---
+
+# GitHub Issue Workflow
+
+## Every Change Needs an Issue
+
+Before writing code, ensure a GitHub issue exists that describes the work:
+
+- **Features**: issue describes the user-facing behavior and acceptance criteria.
+- **Bugs**: issue includes reproduction steps, expected vs actual behavior.
+- **Chores/refactors**: issue explains the motivation and scope.
+
+If no issue exists, create one before starting the branch.
+
+## Branch Naming
+
+Branches reference the issue number or type:
+
+```
+feat/12-user-auth-flow
+fix/34-prisma-migration
+chore/upgrade-next-16
+```
+
+## Commit Messages
+
+Reference issues in commit footers when appropriate:
+
+```
+feat(auth): add OAuth2 login flow
+
+Closes #12
+```
+
+## Closing Issues
+
+- Use `Closes #N` or `Fixes #N` in the PR description or merge commit so GitHub auto-closes the issue.
+- Do not close issues manually until the fix is merged and verified on `main`.
+- If a PR only partially addresses an issue, reference it without the closing keyword and note remaining work in a comment.
+
+## Stale Issues
+
+- Review open issues monthly.
+- Close issues that are no longer relevant with a brief explanation.
+- Reopen if the problem resurfaces.

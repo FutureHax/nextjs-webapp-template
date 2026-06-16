@@ -1,0 +1,38 @@
+---
+description: Enforce test-driven development workflow
+globs: ["**/*.ts", "**/*.tsx", "**/*.js"]
+alwaysApply: true
+---
+
+# Test-Driven Development Workflow
+
+## Red-Green-Refactor Cycle
+
+1. **Write a failing test first** — before implementing any feature or fixing any bug, write a test that describes the expected behavior. Confirm it fails.
+2. **Write the minimum code** to make the test pass. No more.
+3. **Refactor** — clean up duplication, improve naming, extract helpers. All tests must still pass.
+
+## When to Write Tests
+
+- Every new public function, API route, or server action gets at least one test.
+- Every bug fix gets a regression test that reproduces the bug before the fix.
+- Refactors must not change test expectations — if they do, the refactor changed behavior.
+
+## Test File Conventions
+
+- Tests live in `__tests__/` directories or as `*.test.{ts,tsx}` siblings.
+- Use `vitest` — `describe`/`it`/`expect` style.
+- Use `@testing-library/react` for component tests.
+
+## Running Tests
+
+```bash
+npm test          # single run
+npm run test:ci   # CI mode with coverage
+```
+
+## Do Not
+
+- Skip writing tests because the change "is too small."
+- Write tests after implementation as an afterthought.
+- Commit code that breaks existing tests.
