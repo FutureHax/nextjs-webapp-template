@@ -63,12 +63,7 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
-      - uses: actions/setup-node@v6
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
-
-      # Check for unresolved template placeholders first — skip everything if found
+      # Check for unresolved template placeholders — skip everything else if found
       - name: Guard — skip if template not yet instantiated
         id: guard
         run: |
@@ -79,6 +74,12 @@ jobs:
             echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - uses: actions/setup-node@v6
+        if: steps.guard.outputs.skip == 'false'
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
       - name: Install dependencies
         if: steps.guard.outputs.skip == 'false'
         run: npm ci
@@ -88,22 +89,26 @@ jobs:
         run: npm run build
 
       - name: Authenticate to Google Cloud
-        if: steps.guard.outputs.skip == 'false' && secrets.GCP_SA_KEY != ''
+        if: steps.guard.outputs.skip == 'false'
         uses: google-github-actions/auth@v3
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
+        continue-on-error: true
 
       - name: Setup Google Cloud SDK
-        if: steps.guard.outputs.skip == 'false' && secrets.GCP_SA_KEY != ''
+        if: steps.guard.outputs.skip == 'false'
         uses: google-github-actions/setup-gcloud@v3
+        continue-on-error: true
 
       - name: Configure Docker for Artifact Registry
-        if: steps.guard.outputs.skip == 'false' && secrets.GCP_SA_KEY != ''
+        if: steps.guard.outputs.skip == 'false'
         run: gcloud auth configure-docker ${{ vars.GCP_REGISTRY || 'us-central1-docker.pkg.dev' }}
+        continue-on-error: true
 
       - name: Setup Docker Buildx
         if: steps.guard.outputs.skip == 'false'
         uses: docker/setup-buildx-action@v3
+        continue-on-error: true
 
       - name: Run Semantic Release
         if: steps.guard.outputs.skip == 'false'
