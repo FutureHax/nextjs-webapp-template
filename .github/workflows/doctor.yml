@@ -8,5 +8,5 @@ on:
 
 jobs:
   doctor:
-    uses: FutureHax/futurehax-module-doctor/.github/workflows/doctor-check.yml@main
+    uses: FutureHax/futurehax-next-doctor/.github/workflows/doctor-check.yml@main
     secrets: inherit
