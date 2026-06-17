@@ -1,5 +1,7 @@
 # Next.js Web Application Template
 
+[![CI](https://github.com/{{GITHUB_ORG}}/{{APP_NAME}}/actions/workflows/ci.yml/badge.svg)](https://github.com/{{GITHUB_ORG}}/{{APP_NAME}}/actions/workflows/ci.yml) [![Release](https://github.com/{{GITHUB_ORG}}/{{APP_NAME}}/actions/workflows/release.yml/badge.svg)](https://github.com/{{GITHUB_ORG}}/{{APP_NAME}}/actions/workflows/release.yml) [![Latest Release](https://img.shields.io/github/v/release/{{GITHUB_ORG}}/{{APP_NAME}}?sort=semver)](https://github.com/{{GITHUB_ORG}}/{{APP_NAME}}/releases) ![License: All Rights Reserved](https://img.shields.io/badge/license-All%20Rights%20Reserved-red)
+
 A production-ready Next.js 15 template with Chakra UI, Prisma, Kubernetes deployment with Helm charts, Google Secret Manager integration, cert-manager, and Flux GitOps support.
 
 ## Features
@@ -197,4 +199,4 @@ See the `docs/` folder for detailed guides:
 
 ## License
 
-MIT
+Copyright (c) 2011-2026 {{GITHUB_ORG}}. All Rights Reserved. This is proprietary software; see the [LICENSE](LICENSE) file for full terms.
