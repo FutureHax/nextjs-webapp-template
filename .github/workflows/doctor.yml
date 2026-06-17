@@ -1,0 +1,12 @@
+name: Doctor Check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  doctor:
+    uses: FutureHax/futurehax-module-doctor/.github/workflows/doctor-check.yml@main
+    secrets: inherit
