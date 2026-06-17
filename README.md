@@ -1,5 +1,7 @@
 # Next.js Web Application Template
 
+[![CI](https://github.com/FutureHax/nextjs-webapp-template/actions/workflows/ci.yml/badge.svg)](https://github.com/FutureHax/nextjs-webapp-template/actions/workflows/ci.yml) [![Release](https://github.com/FutureHax/nextjs-webapp-template/actions/workflows/release.yml/badge.svg)](https://github.com/FutureHax/nextjs-webapp-template/actions/workflows/release.yml) [![Doctor](https://github.com/FutureHax/nextjs-webapp-template/actions/workflows/doctor.yml/badge.svg)](https://github.com/FutureHax/nextjs-webapp-template/actions/workflows/doctor.yml) ![License: All Rights Reserved](https://img.shields.io/badge/license-All%20Rights%20Reserved-red)
+
 A production-ready Next.js 15 template with Chakra UI, Prisma, Kubernetes deployment with Helm charts, Google Secret Manager integration, cert-manager, and Flux GitOps support.
 
 ## Features
