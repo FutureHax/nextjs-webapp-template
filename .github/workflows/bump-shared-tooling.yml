@@ -1,0 +1,31 @@
+name: Bump shared-tooling
+
+on:
+  repository_dispatch:
+    types: [bump-shared-tooling]
+
+permissions:
+  contents: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update submodule to latest
+        run: |
+          git submodule update --remote .shared-tooling
+          if git diff --quiet .shared-tooling; then
+            echo "Already up to date"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .shared-tooling
+          git commit -m "build(deps): update shared-tooling"
+          git push origin main
+
