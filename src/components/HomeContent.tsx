@@ -104,12 +104,14 @@ export function HomeContent() {
         heading="What you get"
         description="Shared shells for marketing pages, with product apps free to brand uniquely."
         features={FEATURE_CARDS}
+        detailCta={{ label: "See about page", href: "/about" }}
       />
 
       <DemoSection
         id="demo"
         heading="Product preview"
         description="Drop a screenshot, interactive demo, or SoftCard placeholder here."
+        detailCta={{ label: "Open contact", href: "/contact" }}
       >
         <SoftCard textAlign="center" py={{ base: 12, md: 16 }}>
           <Text color="text.muted">Demo media slot</Text>
@@ -124,6 +126,7 @@ export function HomeContent() {
         heading="How it works"
         description="Three steps from clone to a production-shaped landing."
         steps={HOW_STEPS}
+        detailCta={{ label: "Read status", href: "/status" }}
       />
 
       <Box id="pricing">

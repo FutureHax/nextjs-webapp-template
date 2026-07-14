@@ -1,3 +1,9 @@
+/*
+ * Keep padding resets out of the unlayered cascade.
+ * An unlayered `padding: 0` on :not(button) beats Chakra @layer recipes and
+ * strips LinkButton / Button-asChild <a> padding. If you need a reset, wrap it
+ * in `@layer reset { ... }` (see nextjs-common/docs/landing.md).
+ */
 * {
   box-sizing: border-box;
 }

@@ -7,7 +7,7 @@ A production-ready Next.js 15 template with Chakra UI, Prisma, Kubernetes deploy
 Hello-world UI is built on local FutureHax commons packages:
 
 - `@futurehax/nextjs-common` (env, CMS, links, SEO)
-- `@futurehax/nextjs-common-ui` (header, footer, login, Full access)
+- `@futurehax/nextjs-common-ui` (landing sections, header, footer, login, Full access)
 
 **Local library verify (recommended):** run the monorepo starter so React stays single-instance:
 
