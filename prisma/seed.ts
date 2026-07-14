@@ -1,16 +1,24 @@
-import { PrismaClient } from '@prisma/client';
+import "dotenv/config";
+import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+const connectionString = process.env.DATABASE_URL;
+if (!connectionString) {
+  throw new Error("DATABASE_URL is not set");
+}
+
+const adapter = new PrismaPg({ connectionString });
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  console.log('🌱 Starting database seed...');
+  console.log("🌱 Starting database seed...");
 
   // Upsert helper function
   const upsert = async <T extends Record<string, unknown>>(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     model: { upsert: (args: any) => Promise<unknown> },
     where: Record<string, unknown>,
-    data: T
+    data: T,
   ) => {
     await model.upsert({ where, update: data, create: data });
   };
@@ -18,78 +26,78 @@ async function main() {
   // ========================================================================
   // Seed App Settings
   // ========================================================================
-  console.log('📝 Seeding app settings...');
-  
+  console.log("📝 Seeding app settings...");
+
   await Promise.all([
     upsert(
       prisma.appSetting,
-      { key: 'app_name' },
+      { key: "app_name" },
       {
-        key: 'app_name',
-        value: '{{APP_TITLE}}',
-        description: 'Application display name',
+        key: "app_name",
+        value: "{{APP_TITLE}}",
+        description: "Application display name",
         isActive: true,
-      }
+      },
     ),
     upsert(
       prisma.appSetting,
-      { key: 'app_version' },
+      { key: "app_version" },
       {
-        key: 'app_version',
-        value: '1.0.0',
-        description: 'Current application version',
+        key: "app_version",
+        value: "1.0.0",
+        description: "Current application version",
         isActive: true,
-      }
+      },
     ),
     upsert(
       prisma.appSetting,
-      { key: 'maintenance_mode' },
+      { key: "maintenance_mode" },
       {
-        key: 'maintenance_mode',
-        value: 'false',
-        description: 'Enable maintenance mode',
+        key: "maintenance_mode",
+        value: "false",
+        description: "Enable maintenance mode",
         isActive: true,
-      }
+      },
     ),
   ]);
 
   // ========================================================================
   // Seed Demo User (Development only)
   // ========================================================================
-  if (process.env.NODE_ENV !== 'production') {
-    console.log('👤 Seeding demo user...');
-    
+  if (process.env.NODE_ENV !== "production") {
+    console.log("👤 Seeding demo user...");
+
     const demoUser = await prisma.user.upsert({
-      where: { email: 'demo@example.com' },
+      where: { email: "demo@example.com" },
       update: {},
       create: {
-        email: 'demo@example.com',
-        name: 'Demo User',
+        email: "demo@example.com",
+        name: "Demo User",
       },
     });
 
     // Seed demo posts
-    console.log('📄 Seeding demo posts...');
-    
+    console.log("📄 Seeding demo posts...");
+
     await Promise.all([
       prisma.post.upsert({
-        where: { id: 'demo-post-1' },
+        where: { id: "demo-post-1" },
         update: {},
         create: {
-          id: 'demo-post-1',
-          title: 'Welcome to {{APP_TITLE}}',
-          content: 'This is a demo post to showcase the template features.',
+          id: "demo-post-1",
+          title: "Welcome to {{APP_TITLE}}",
+          content: "This is a demo post to showcase the template features.",
           published: true,
           authorId: demoUser.id,
         },
       }),
       prisma.post.upsert({
-        where: { id: 'demo-post-2' },
+        where: { id: "demo-post-2" },
         update: {},
         create: {
-          id: 'demo-post-2',
-          title: 'Getting Started Guide',
-          content: 'Learn how to use this Next.js template effectively.',
+          id: "demo-post-2",
+          title: "Getting Started Guide",
+          content: "Learn how to use this Next.js template effectively.",
           published: true,
           authorId: demoUser.id,
         },
@@ -97,12 +105,12 @@ async function main() {
     ]);
   }
 
-  console.log('✅ Database seed completed!');
+  console.log("✅ Database seed completed!");
 }
 
 main()
   .catch((e) => {
-    console.error('❌ Seed error:', e);
+    console.error("❌ Seed error:", e);
     process.exit(1);
   })
   .finally(async () => {

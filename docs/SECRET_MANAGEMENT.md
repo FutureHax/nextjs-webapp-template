@@ -5,6 +5,7 @@ This guide covers how secrets are managed using Google Secret Manager and Kubern
 ## Overview
 
 Secrets are stored in Google Secret Manager and mounted into pods using:
+
 1. **Secrets Store CSI Driver** - Mounts secrets as volumes
 2. **SecretProviderClass** - Defines which secrets to mount
 3. **Workload Identity** - Authenticates pods to access GSM
@@ -61,7 +62,7 @@ echo -n "new-secret-value" | \
 ```hcl
 resource "google_secret_manager_secret" "database_url" {
   secret_id = "{{APP_NAME}}_database_url"
-  
+
   replication {
     auto {}
   }
@@ -132,7 +133,7 @@ Use different secret names per environment:
 secretNames:
   databaseUrl: "{{APP_NAME}}_dev_database_url"
 
-# prod/values.yaml  
+# prod/values.yaml
 secretNames:
   databaseUrl: "{{APP_NAME}}_prod_database_url"
 ```
@@ -156,6 +157,18 @@ Never commit `.env` files to git!
 ```bash
 kubectl rollout restart deployment/{{APP_NAME}}-prod -n {{K8S_NAMESPACE}}-prod
 ```
+
+## Firebase App Hosting (paid FutureHax web apps)
+
+Apps that resolve Patreon/partner entitlement by email against futurehax-cms need a shared secret:
+
+| Variable                     | Purpose                                                                                                                               |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `CMS_APP_ENTITLEMENT_SECRET` | Bearer token for CMS `GET /api/v1/access/[moduleId]?email=` (and Alpha-5 Discord status). Same value on CMS + every paid Next.js app. |
+
+Document it in `.env.example` and bind it in `apphosting.yaml`. Foundry modules that only use catalog download keys / `/api/v1/validate` do **not** need this secret.
+
+Partner unlocks are declared per module in `.futurehax-cms.json` as `extraPartnerGrantIds` (see [futurehax-cms/docs/ENTITLEMENTS.md](https://github.com/FutureHax/futurehax-cms/blob/main/docs/ENTITLEMENTS.md)).
 
 ## Next Steps
 

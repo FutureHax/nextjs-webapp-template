@@ -1,48 +1,28 @@
-import { z } from 'zod';
+import { z } from "zod";
+import { createEnv } from "@futurehax/nextjs-common";
 
-// ---------------------------------------------------------------------------
-// Server-side env vars (never exposed to the browser)
-// ---------------------------------------------------------------------------
+const optionalNonEmpty = z.preprocess((v) => (v === "" ? undefined : v), z.string().min(1).optional());
+
 const serverSchema = z.object({
-  NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
+  NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   DATABASE_URL: z.string().url().optional(),
+  CMS_BASE_URL: z.string().url().optional(),
+  CMS_APP_ENTITLEMENT_SECRET: optionalNonEmpty,
+  CMS_MODULE_ID: optionalNonEmpty,
+  SENDGRID_API_KEY: optionalNonEmpty,
+  CONTACT_EMAIL_TO: z.preprocess((v) => (v === "" ? undefined : v), z.string().email().optional()),
+  CONTACT_EMAIL_FROM: z.preprocess((v) => (v === "" ? undefined : v), z.string().email().optional()),
 });
 
-// ---------------------------------------------------------------------------
-// Client-side env vars (NEXT_PUBLIC_ prefix, bundled into the browser build)
-// ---------------------------------------------------------------------------
 const clientSchema = z.object({
   NEXT_PUBLIC_SITE_URL: z.string().url().optional(),
+  NEXT_PUBLIC_CMS_BASE_URL: z.string().url().optional(),
+  NEXT_PUBLIC_CMS_MODULE_ID: optionalNonEmpty,
 });
 
-type ServerEnv = z.infer<typeof serverSchema>;
-type ClientEnv = z.infer<typeof clientSchema>;
-export type Env = ServerEnv & ClientEnv;
+export type Env = z.infer<typeof serverSchema> & z.infer<typeof clientSchema>;
 
-function validateEnv(): Env {
-  const server = serverSchema.safeParse(process.env);
-  const client = clientSchema.safeParse(process.env);
-
-  const errors: string[] = [];
-
-  if (!server.success) {
-    errors.push(...server.error.issues.map((i) => `[server] ${i.path.join('.')}: ${i.message}`));
-  }
-  if (!client.success) {
-    errors.push(...client.error.issues.map((i) => `[client] ${i.path.join('.')}: ${i.message}`));
-  }
-
-  if (errors.length > 0) {
-    console.error('❌ Invalid environment variables:\n' + errors.map((e) => `  ${e}`).join('\n'));
-    if (process.env.NODE_ENV === 'production') {
-      throw new Error('Missing or invalid environment variables — refusing to start.');
-    }
-  }
-
-  return {
-    ...(server.success ? server.data : serverSchema.parse({})),
-    ...(client.success ? client.data : clientSchema.parse({})),
-  } as Env;
-}
-
-export const env = validateEnv();
+export const env = createEnv({
+  server: serverSchema,
+  client: clientSchema,
+});

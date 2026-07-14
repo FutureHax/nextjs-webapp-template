@@ -36,6 +36,7 @@ WORKDIR /app
 ENV NODE_ENV=production
 # Ensure DEVELOPMENT is not set so Next.js creates standalone output
 ENV DEVELOPMENT=
+ENV OUTPUT_STANDALONE=1
 
 # Accept git commit SHA as build argument
 ARG GIT_COMMIT_SHA=unknown

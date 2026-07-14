@@ -1,7 +1,5 @@
 * {
   box-sizing: border-box;
-  padding: 0;
-  margin: 0;
 }
 
 html,
@@ -32,6 +30,6 @@ body {
 
 /* Selection styling */
 ::selection {
-  background: rgba(66, 153, 225, 0.4);
+  background: rgba(229, 57, 53, 0.45);
   color: white;
 }

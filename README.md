@@ -4,22 +4,40 @@
 
 A production-ready Next.js 15 template with Chakra UI, Prisma, Kubernetes deployment with Helm charts, Google Secret Manager integration, cert-manager, and Flux GitOps support.
 
+Hello-world UI is built on local FutureHax commons packages:
+
+- `@futurehax/nextjs-common` (env, CMS, links, SEO)
+- `@futurehax/nextjs-common-ui` (header, footer, login, Full access)
+
+**Local library verify (recommended):** run the monorepo starter so React stays single-instance:
+
+```bash
+cd ../nextjs-common && npm install && npm run dev:starter
+# http://localhost:3010
+```
+
+This template depends on those packages via `file:../nextjs-common/packages/...`. Prefer the monorepo `apps/starter` when iterating on the libraries (cross-repo `file:` + two React trees can break `createRoot` / hooks).
+
 ## Features
 
 ### Core Application Stack
+
 - **Next.js 15** with App Router
 - **Chakra UI v3** for component library
+- **@futurehax/nextjs-common** + **@futurehax/nextjs-common-ui** shared patterns
 - **TypeScript** with strict mode
 - **React 19** with latest features
 - **Zod** for validation
 
 ### Database Layer
+
 - **Prisma ORM** with PostgreSQL
 - **Field-level encryption** support
 - **Migration system** with version control
 - **Seed scripts** for initial data
 
 ### Kubernetes Infrastructure
+
 - **Helm chart** with environment-specific values (dev/staging/prod)
 - **Gateway API** for ingress (modern alternative to legacy Ingress)
 - **cert-manager** integration for automated TLS
@@ -28,18 +46,21 @@ A production-ready Next.js 15 template with Chakra UI, Prisma, Kubernetes deploy
 - **ServiceAccount** with Workload Identity
 
 ### Secret Management
+
 - **Google Secret Manager** integration via CSI driver
 - **SecretProviderClass** for mounting secrets
 - **Workload Identity** for secure GCP access
 - Environment-specific secret configurations
 
 ### CI/CD & GitOps
+
 - **Semantic Release** for versioning
 - **GitHub Actions** for CI/CD
 - **Flux** Kustomization and HelmRelease support
 - **Docker multi-stage builds** with multi-arch support
 
 ### Developer Experience
+
 - **Devcontainer** configuration
 - **Taskfile.yml** with comprehensive tasks
 - **ESLint + Prettier** configuration
@@ -61,16 +82,16 @@ cd my-app
 
 Replace these placeholders throughout the codebase:
 
-| Placeholder | Description | Example |
-|-------------|-------------|----------|
-| `{{APP_NAME}}` | Application name (kebab-case) | `my-web-app` |
-| `{{APP_TITLE}}` | Display title | `My Web App` |
-| `{{GITHUB_ORG}}` | GitHub org/username | `FutureHax` |
-| `{{GCP_PROJECT}}` | GCP project ID | `my-project-123` |
-| `{{GCP_REGION}}` | GCP region | `us-central1` |
-| `{{DOCKER_REGISTRY}}` | Artifact Registry URL | `us-central1-docker.pkg.dev/proj/repo` |
-| `{{K8S_NAMESPACE}}` | Kubernetes namespace | `my-app-prod` |
-| `{{DOMAIN}}` | Primary domain | `app.example.com` |
+| Placeholder           | Description                   | Example                                |
+| --------------------- | ----------------------------- | -------------------------------------- |
+| `{{APP_NAME}}`        | Application name (kebab-case) | `my-web-app`                           |
+| `{{APP_TITLE}}`       | Display title                 | `My Web App`                           |
+| `{{GITHUB_ORG}}`      | GitHub org/username           | `FutureHax`                            |
+| `{{GCP_PROJECT}}`     | GCP project ID                | `my-project-123`                       |
+| `{{GCP_REGION}}`      | GCP region                    | `us-central1`                          |
+| `{{DOCKER_REGISTRY}}` | Artifact Registry URL         | `us-central1-docker.pkg.dev/proj/repo` |
+| `{{K8S_NAMESPACE}}`   | Kubernetes namespace          | `my-app-prod`                          |
+| `{{DOMAIN}}`          | Primary domain                | `app.example.com`                      |
 
 You can use find-and-replace or run:
 
@@ -200,3 +221,7 @@ See the `docs/` folder for detailed guides:
 ## License
 
 MIT
+
+## Local commons packages
+
+`.npmrc` sets `install-links=true` so `file:` deps to `../nextjs-common` are **copied** (not symlinked). That keeps a single React tree for production builds. Re-run `npm install` after changing the commons packages.
