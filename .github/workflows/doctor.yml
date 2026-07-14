@@ -6,7 +6,13 @@ on:
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: read
+
 jobs:
   doctor:
-    uses: FutureHax/futurehax-next-doctor/.github/workflows/doctor-check.yml@main
+    uses: FutureHax/futurehax-next-doctor/.github/workflows/doctor-check-v2.yml@main
+    with:
+      run_commons: true
     secrets: inherit

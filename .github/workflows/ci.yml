@@ -10,9 +10,10 @@ permissions:
   contents: write
   issues: write
   pull-requests: write
+  packages: read
 
 env:
-  NODE_VERSION: '24'
+  NODE_VERSION: "24"
   HUSKY: 0
 
 jobs:
@@ -28,10 +29,12 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_READ_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Run Linter
         run: npm run lint
@@ -78,11 +81,13 @@ jobs:
         if: steps.guard.outputs.skip == 'false'
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: 'npm'
+          cache: "npm"
 
       - name: Install dependencies
         if: steps.guard.outputs.skip == 'false'
         run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_READ_TOKEN || secrets.GITHUB_TOKEN }}
 
       - name: Build
         if: steps.guard.outputs.skip == 'false'

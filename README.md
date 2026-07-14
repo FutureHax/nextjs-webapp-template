@@ -4,10 +4,12 @@
 
 A production-ready Next.js 15 template with Chakra UI, Prisma, Kubernetes deployment with Helm charts, Google Secret Manager integration, cert-manager, and Flux GitOps support.
 
-Hello-world UI is built on local FutureHax commons packages:
+Hello-world UI uses FutureHax commons from **GitHub Packages**:
 
 - `@futurehax/nextjs-common` (env, CMS, links, SEO)
 - `@futurehax/nextjs-common-ui` (landing sections, header, footer, login, Full access)
+
+Set `NODE_AUTH_TOKEN` (PAT with `read:packages`, FutureHax SSO) for `npm ci`. See [CONSUMING.md](../nextjs-common/docs/CONSUMING.md).
 
 **Local library verify (recommended):** run the monorepo starter so React stays single-instance:
 
@@ -16,7 +18,7 @@ cd ../nextjs-common && npm install && npm run dev:starter
 # http://localhost:3010
 ```
 
-This template depends on those packages via `file:../nextjs-common/packages/...`. Prefer the monorepo `apps/starter` when iterating on the libraries (cross-repo `file:` + two React trees can break `createRoot` / hooks).
+Bump commons versions manually (`npm i @futurehax/nextjs-common@latest @futurehax/nextjs-common-ui@latest`). Prefer `apps/starter` when iterating on the libraries.
 
 ## Features
 
