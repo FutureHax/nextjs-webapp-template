@@ -10,12 +10,10 @@ import { APP_TITLE } from "@/lib/site";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
-  { href: "/#full-access", label: "Full access" },
   { href: "/contact", label: "Contact" },
-  { href: "/login", label: "Login" },
 ];
 
-const legalLinks = createLegalNavLinks();
+const legalLinks = [...createLegalNavLinks(), { href: "/status", label: "Status" }];
 
 export function AppShell({ children }: { children: ReactNode }) {
   return (
@@ -34,12 +32,13 @@ export function AppShell({ children }: { children: ReactNode }) {
       </Box>
       <SiteFooter
         brand={<Box fontWeight="bold">{APP_TITLE}</Box>}
+        tagline="Hello-world FutureHax Next app scaffolded from the shared commons packages."
         sections={[
           {
             title: "Product",
             links: [
               { href: "/", label: "Home" },
-              { href: "/#full-access", label: "Full access" },
+              { href: "/#pricing", label: "Full access" },
               { href: "/login", label: "Login" },
             ],
           },
@@ -55,10 +54,13 @@ export function AppShell({ children }: { children: ReactNode }) {
               { href: FUTUREHAX_LINKS.PROJECTS, label: "Projects" },
             ],
           },
-        ]}
-        socials={[
-          { href: FUTUREHAX_LINKS.DISCORD, label: "Discord" },
-          { href: FUTUREHAX_LINKS.PATREON, label: "Patreon" },
+          {
+            title: "Social",
+            links: [
+              { href: FUTUREHAX_LINKS.DISCORD, label: "Discord" },
+              { href: FUTUREHAX_LINKS.PATREON, label: "Patreon" },
+            ],
+          },
         ]}
         copyright={`© ${new Date().getFullYear()} FutureHax`}
       />

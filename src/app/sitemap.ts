@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/terms", changeFrequency: "yearly", priority: 0.3 },
     { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },
     { path: "/about", changeFrequency: "monthly", priority: 0.5 },
+    { path: "/status", changeFrequency: "monthly", priority: 0.4 },
   ]).map((entry) => ({
     ...entry,
     lastModified: new Date(),
