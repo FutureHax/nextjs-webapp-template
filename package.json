@@ -51,7 +51,7 @@
     "@semantic-release/github": "^12.0.9",
     "@semantic-release/npm": "^13.1.5",
     "@semantic-release/release-notes-generator": "^14.1.1",
-    "@types/node": "24.13.3",
+    "@types/node": "26.1.1",
     "@types/pg": "^8.15.5",
     "@types/react": "19.2.17",
     "@typescript-eslint/eslint-plugin": "8.64.0",
