@@ -54,7 +54,7 @@
     "@types/node": "24.13.3",
     "@types/pg": "^8.15.5",
     "@types/react": "19.2.17",
-    "@typescript-eslint/eslint-plugin": "8.64.0",
+    "@typescript-eslint/eslint-plugin": "8.65.0",
     "@typescript-eslint/parser": "8.64.0",
     "autoprefixer": "^10.5.2",
     "dotenv": "^17.4.2",
