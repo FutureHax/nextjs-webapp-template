@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { contactFormSchema, isContactEmailConfigured, sendContactEmail } from "@futurehax/nextjs-common";
+import { contactFormSchema } from "@futurehax/nextjs-common";
+import { isContactEmailConfigured, sendContactEmail } from "@futurehax/nextjs-common/email";
 
 import { APP_TITLE, SITE_URL } from "@/lib/site";
 
