@@ -1,4 +1,4 @@
-import { createStatusHandler } from "@futurehax/nextjs-common";
+import { createStatusHandler } from "@futurehax/nextjs-common/status";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";

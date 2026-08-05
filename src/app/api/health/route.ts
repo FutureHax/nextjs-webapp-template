@@ -1,4 +1,4 @@
-import { createHealthHandler } from "@futurehax/nextjs-common";
+import { createHealthHandler } from "@futurehax/nextjs-common/status";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
