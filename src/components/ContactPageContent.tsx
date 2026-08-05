@@ -1,7 +1,7 @@
 "use client";
 
 import { Mail } from "lucide-react";
-import { FUTUREHAX_LINKS } from "@futurehax/nextjs-common";
+import { FUTUREHAX_LINKS } from "@futurehax/nextjs-common/links";
 import { ContactSection } from "@futurehax/nextjs-common-ui";
 
 export function ContactPageContent() {

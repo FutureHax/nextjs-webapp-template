@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Flex } from "@chakra-ui/react";
-import { FUTUREHAX_LINKS } from "@futurehax/nextjs-common";
+import { FUTUREHAX_LINKS } from "@futurehax/nextjs-common/links";
 import { SiteFooter, SiteHeader, UserMenu } from "@futurehax/nextjs-common-ui";
 import type { ReactNode } from "react";
 

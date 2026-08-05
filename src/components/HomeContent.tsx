@@ -1,7 +1,9 @@
 "use client";
 
 import { Box, Text } from "@chakra-ui/react";
-import { FUTUREHAX_LINKS, PATREON_TIERS, type CatalogCounts } from "@futurehax/nextjs-common";
+import type { CatalogCounts } from "@futurehax/nextjs-common/catalog";
+import { FUTUREHAX_LINKS } from "@futurehax/nextjs-common/links";
+import { PATREON_TIERS } from "@futurehax/nextjs-common/patreon";
 import {
   CmsKeyActivateSection,
   DemoSection,
