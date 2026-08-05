@@ -2,6 +2,7 @@
 
 **Date:** 2026-08-05  
 **Branch:** `feat/expandable-legal`  
+**Commit:** `21dc9b7` – feat: migrate to expandable /legal page  
 **Status:** Complete
 
 ## Summary
