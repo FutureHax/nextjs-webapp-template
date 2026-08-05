@@ -1,7 +1,7 @@
 "use client";
 
 import { Box, Flex } from "@chakra-ui/react";
-import { createLegalNavLinks, FUTUREHAX_LINKS } from "@futurehax/nextjs-common";
+import { FUTUREHAX_LINKS } from "@futurehax/nextjs-common";
 import { SiteFooter, SiteHeader, UserMenu } from "@futurehax/nextjs-common-ui";
 import type { ReactNode } from "react";
 
@@ -13,7 +13,12 @@ const navLinks = [
   { href: "/contact", label: "Contact" },
 ];
 
-const legalLinks = [...createLegalNavLinks(), { href: "/status", label: "Status" }];
+const legalLinks = [
+  { href: "/about", label: "About" },
+  { href: "/legal", label: "Legal" },
+  { href: "/contact", label: "Contact" },
+  { href: "/status", label: "Status" },
+];
 
 export function AppShell({ children }: { children: ReactNode }) {
   return (

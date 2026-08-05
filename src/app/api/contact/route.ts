@@ -1,13 +1,14 @@
 import { NextResponse } from "next/server";
-import { contactFormSchema } from "@futurehax/nextjs-common";
+import { contactFormSchema, isContactEmailConfigured, sendContactEmail } from "@futurehax/nextjs-common";
+
+import { APP_TITLE } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
 
 /**
- * Hello-world contact endpoint.
- * - With SENDGRID_API_KEY + CONTACT_EMAIL_TO: send via SendGrid (wire in product).
- * - Otherwise: accept and log in stub mode so the form is testable locally.
+ * Contact endpoint: validate with the shared schema, deliver with the shared
+ * SendGrid mailer. Set `SENDGRID_DISABLED=true` to log instead of sending.
  */
 export async function POST(request: Request) {
   let body: unknown;
@@ -25,20 +26,20 @@ export async function POST(request: Request) {
     );
   }
 
-  const { name, email } = validation.data;
-  const hasSendGrid = Boolean(process.env.SENDGRID_API_KEY && process.env.CONTACT_EMAIL_TO);
-
-  if (!hasSendGrid) {
-    console.info("[contact] stub accept", { name, email, at: new Date().toISOString() });
-    return NextResponse.json({
-      message: "Contact form accepted (stub mode - configure SENDGRID_API_KEY to send mail)",
-      statusCode: 200,
-      stub: true,
-    });
+  if (!isContactEmailConfigured()) {
+    console.error("[contact] SendGrid is not configured (SENDGRID_API_KEY / CONTACT_EMAIL_TO)");
+    return NextResponse.json({ error: "Contact form is not configured.", statusCode: 503 }, { status: 503 });
   }
 
-  // Product apps should call a shared mail helper / SendGrid here.
-  // Starter keeps SendGrid optional so local verify does not require secrets.
-  console.info("[contact] SendGrid configured but starter leaves sending unimplemented; treating as success");
-  return NextResponse.json({ message: "Contact form submitted successfully", statusCode: 200 });
+  try {
+    await sendContactEmail(validation.data, {
+      productName: APP_TITLE,
+      siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
+    });
+  } catch (err) {
+    console.error("[contact] sendContactEmail failed:", err instanceof Error ? err.message : err);
+    return NextResponse.json({ error: "Failed to send message. Please try again.", statusCode: 500 }, { status: 500 });
+  }
+
+  return NextResponse.json({ message: "Message sent successfully", statusCode: 200 });
 }
