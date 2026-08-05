@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { contactFormSchema, isContactEmailConfigured, sendContactEmail } from "@futurehax/nextjs-common";
 
-import { APP_TITLE } from "@/lib/site";
+import { APP_TITLE, SITE_URL } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
   try {
     await sendContactEmail(validation.data, {
       productName: APP_TITLE,
-      siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
+      siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? SITE_URL,
     });
   } catch (err) {
     console.error("[contact] sendContactEmail failed:", err instanceof Error ? err.message : err);
