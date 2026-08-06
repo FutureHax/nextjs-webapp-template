@@ -43,6 +43,10 @@ const nextConfig = {
   output: process.env.OUTPUT_STANDALONE === "1" || process.env.DOCKER_BUILD === "1" ? "standalone" : undefined,
   outputFileTracingRoot: path.join(__dirname),
   transpilePackages: ["@futurehax/nextjs-common", "@futurehax/nextjs-common-ui"],
+  // Local commons webpack symlink fix; Next 16 defaults to Turbopack.
+  turbopack: {
+    root: __dirname,
+  },
   webpack(config) {
     if (commonsLinkedLocally) {
       config.resolve.symlinks = false;
