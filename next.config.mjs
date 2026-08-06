@@ -1,8 +1,25 @@
+import { lstatSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const isDev = process.env.NODE_ENV !== "production";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const commonsPackages = ["@futurehax/nextjs-common", "@futurehax/nextjs-common-ui"];
+
+// USE_LOCAL_COMMONS makes `predev` symlink the commons packages to the sibling
+// checkout, so their peers (Chakra, Emotion, next-themes) resolve from that
+// checkout's node_modules instead of ours. A second Chakra copy means a second
+// React context, and every commons component then throws ContextError against
+// our ChakraProvider. Keeping symlinked paths unresolved makes nested lookups
+// walk this app's node_modules, so the peers stay single instances.
+const commonsLinkedLocally = commonsPackages.some((pkg) => {
+  try {
+    return lstatSync(path.join(__dirname, "node_modules", pkg)).isSymbolicLink();
+  } catch {
+    return false;
+  }
+});
 
 const cspDirectives = [
   "default-src 'self'",
@@ -26,6 +43,12 @@ const nextConfig = {
   output: process.env.OUTPUT_STANDALONE === "1" || process.env.DOCKER_BUILD === "1" ? "standalone" : undefined,
   outputFileTracingRoot: path.join(__dirname),
   transpilePackages: ["@futurehax/nextjs-common", "@futurehax/nextjs-common-ui"],
+  webpack(config) {
+    if (commonsLinkedLocally) {
+      config.resolve.symlinks = false;
+    }
+    return config;
+  },
   async headers() {
     return [
       {
