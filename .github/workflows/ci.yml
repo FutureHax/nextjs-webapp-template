@@ -16,6 +16,10 @@ env:
   NODE_VERSION: "24"
   HUSKY: 0
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   test:
     name: Test

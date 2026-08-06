@@ -16,6 +16,10 @@ permissions:
 env:
   NODE_VERSION: "24"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   doctor:
     name: Next Doctor
