@@ -44,7 +44,7 @@
     "@commitlint/config-conventional": "^21.2.0",
     "@commitlint/cz-commitlint": "^21.2.0",
     "@eslint/js": "^10.0.1",
-    "@futurehax/commons-doctor": "file:../futurehax-commons-doctor",
+    "@futurehax/commons-doctor": "^0.3.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/exec": "^7.1.0",

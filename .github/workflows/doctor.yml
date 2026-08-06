@@ -1,5 +1,8 @@
 name: Doctor Check
 
+# Inlined (public template cannot call private reusable workflows in FutureHax/futurehax-next-doctor).
+# Mirrors doctor-check-v2.yml: install doctors from GitHub Packages, then audit.
+
 on:
   push:
     branches: [main]
@@ -10,9 +13,37 @@ permissions:
   contents: read
   packages: read
 
+env:
+  NODE_VERSION: "24"
+
 jobs:
   doctor:
-    uses: FutureHax/futurehax-next-doctor/.github/workflows/doctor-check-v2.yml@main
-    with:
-      run_commons: true
-    secrets: inherit
+    name: Next Doctor
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: https://npm.pkg.github.com
+          scope: "@futurehax"
+
+      - name: Install next-doctor
+        run: npm i -g "@futurehax/next-doctor@^0.1.0"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_READ_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: Install commons-doctor
+        run: npm i -g "@futurehax/commons-doctor@^0.3.0"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_READ_TOKEN || secrets.GITHUB_TOKEN }}
+
+      - name: next-doctor
+        run: next-doctor audit . --output - --format md
+
+      - name: commons-doctor
+        run: commons-doctor audit --strict
