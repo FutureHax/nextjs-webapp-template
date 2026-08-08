@@ -83,7 +83,7 @@
   "prettier": "./.shared-tooling/prettier/base.json",
   "scripts": {
     "predev": "node ../nextjs-common/scripts/link-local.mjs",
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
