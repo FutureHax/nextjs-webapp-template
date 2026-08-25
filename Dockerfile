@@ -3,6 +3,7 @@
 
 # ---- Dependencies (ALL) ----
 FROM node:20-alpine AS deps
+RUN npm install -g npm@12
 WORKDIR /app
 
 # Install ALL dependencies (including devDependencies) for the build stage
@@ -13,6 +14,7 @@ RUN npm ci --legacy-peer-deps --ignore-scripts
 
 # ---- Production Dependencies ----
 FROM node:20-alpine AS prod-deps
+RUN npm install -g npm@12
 WORKDIR /app
 
 # Install only production dependencies for the final image
@@ -21,6 +23,7 @@ RUN npm ci --legacy-peer-deps --omit=dev --ignore-scripts
 
 # ---- Prisma Generate ----
 FROM node:20-alpine AS prisma
+RUN npm install -g npm@12
 WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
@@ -32,6 +35,7 @@ RUN npx prisma generate
 
 # ---- Builder ----
 FROM node:20-alpine AS builder
+RUN npm install -g npm@12
 WORKDIR /app
 ENV NODE_ENV=production
 # Ensure DEVELOPMENT is not set so Next.js creates standalone output
