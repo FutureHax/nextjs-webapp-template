@@ -1,0 +1,48 @@
+{
+  "repoPath": "/Users/marvin/Workspace/nextjs-webapp-template",
+  "mode": "sibling",
+  "generatedAt": "2026-08-05T21:39:48.407Z",
+  "results": [
+    {
+      "id": "legal.page",
+      "description": "App Router exposes a combined /legal page",
+      "severity": "error",
+      "passed": true,
+      "message": "src/app/legal/page.tsx"
+    },
+    {
+      "id": "legal.ui",
+      "description": "Legal page renders ExpandableLegalPage from commons-ui",
+      "severity": "error",
+      "passed": true,
+      "message": "ExpandableLegalPage in src/app/legal/page.tsx"
+    },
+    {
+      "id": "legal.builders",
+      "description": "Legal content uses buildPrivacyPolicy and buildTermsOfService",
+      "severity": "error",
+      "passed": true,
+      "message": "builders in src/lib/legal.ts"
+    },
+    {
+      "id": "legal.redirects",
+      "description": "/privacy and /terms redirect to the combined /legal page",
+      "severity": "error",
+      "passed": true,
+      "message": "privacy: src/app/privacy/page.tsx; terms: src/app/terms/page.tsx"
+    },
+    {
+      "id": "legal.nav-link",
+      "description": "Site chrome links to /legal from every page",
+      "severity": "warn",
+      "passed": true,
+      "message": "src/components/AppShell.tsx"
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "warnings": 0,
+    "infos": 0,
+    "passed": 5
+  }
+}

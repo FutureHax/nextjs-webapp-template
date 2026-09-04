@@ -1,0 +1,106 @@
+<h2>Canonical SaaS landing layout</h2>
+<p class="subtitle">Phase 1 wireframe for nextjs-webapp-template. Same structure later for BMS and MCG; theme and copy stay unique.</p>
+
+<div class="frame">
+  <div class="browser">
+    <div class="chrome">
+      <strong>Product Brand</strong>
+      <span>Home · About · Contact</span>
+    </div>
+
+    <div class="band">
+      <div class="idx">1</div>
+      <div>
+        <h3>Hero</h3>
+        <p>Title, support line, primary + secondary CTA, optional media slot</p>
+      </div>
+    </div>
+    <div class="band">
+      <div class="idx">2</div>
+      <div>
+        <h3>Features</h3>
+        <p>Heading + feature cards (icon / title / body)</p>
+      </div>
+    </div>
+    <div class="band">
+      <div class="idx">3</div>
+      <div>
+        <h3>How It Works</h3>
+        <p>Numbered steps</p>
+      </div>
+    </div>
+    <div class="band">
+      <div class="idx">4</div>
+      <div>
+        <h3>Demo / Preview</h3>
+        <p>Heading + product-owned media slot</p>
+      </div>
+    </div>
+    <div class="band">
+      <div class="idx">5</div>
+      <div>
+        <h3>Pricing</h3>
+        <p>FullAccessSection (buy once + Patreon)</p>
+      </div>
+    </div>
+    <div class="band muted">
+      <div class="idx">6</div>
+      <div>
+        <h3>CMS key</h3>
+        <p>Template-only entitlement demo</p>
+      </div>
+    </div>
+    <div class="band">
+      <div class="idx">7</div>
+      <div>
+        <h3>FAQ</h3>
+        <p>Q/A list</p>
+      </div>
+    </div>
+    <div class="band">
+      <div class="idx">8</div>
+      <div>
+        <h3>Final CTA</h3>
+        <p>Headline + single CTA</p>
+      </div>
+    </div>
+
+    <div class="chrome footer">
+      <span>Footer · Privacy · Terms · Status · Socials</span>
+    </div>
+  </div>
+
+  <div class="side">
+    <h3>Routes</h3>
+    <ul>
+      <li><code>/</code> Marketing home</li>
+      <li><code>/about</code> AboutSection</li>
+      <li><code>/contact</code> ContactSection</li>
+      <li><code>/privacy</code> LegalDocument</li>
+      <li><code>/terms</code> LegalDocument</li>
+      <li><code>/status</code> Minimal status</li>
+      <li><code>/login</code> LoginCard</li>
+    </ul>
+    <p class="subtitle">Shared shells in commons; template first; BMS/MCG after sign-off.</p>
+  </div>
+</div>
+
+<style>
+  .frame { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.5rem; align-items: start; }
+  @media (max-width: 800px) { .frame { grid-template-columns: 1fr; } }
+  .browser { border: 1px solid var(--border, #333); border-radius: 10px; overflow: hidden; }
+  .chrome { display: flex; justify-content: space-between; gap: 1rem; padding: 0.75rem 1rem; border-bottom: 1px solid var(--border, #333); font-size: 0.9rem; }
+  .chrome.footer { border-bottom: 0; border-top: 1px solid var(--border, #333); color: var(--muted, #888); }
+  .band { display: flex; gap: 0.75rem; padding: 0.85rem 1rem; border-bottom: 1px solid var(--border, #333); }
+  .band:last-of-type { border-bottom: 0; }
+  .band.muted { opacity: 0.75; }
+  .band h3 { margin: 0 0 0.25rem; font-size: 1rem; }
+  .band p { margin: 0; font-size: 0.9rem; color: var(--muted, #888); }
+  .idx {
+    flex: 0 0 1.75rem; height: 1.75rem; border-radius: 6px;
+    display: grid; place-items: center; font-weight: 700; font-size: 0.8rem;
+    background: var(--accent, #3b82f6); color: #fff;
+  }
+  .side ul { padding-left: 1.1rem; }
+  .side li { margin: 0.35rem 0; }
+</style>
