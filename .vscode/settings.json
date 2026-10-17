@@ -8,8 +8,5 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "files.associations": {
     "*.css": "css"
-  },
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma"
   }
 }

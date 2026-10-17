@@ -2,10 +2,7 @@
   "recommendations": [
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
-    "prisma.prisma",
     "bradlc.vscode-tailwindcss",
-    "ms-azuretools.vscode-docker",
-    "redhat.vscode-yaml",
-    "ms-kubernetes-tools.vscode-kubernetes-tools"
+    "redhat.vscode-yaml"
   ]
 }
