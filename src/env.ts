@@ -5,7 +5,6 @@ const optionalNonEmpty = z.preprocess((v) => (v === "" ? undefined : v), z.strin
 
 const serverSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
-  DATABASE_URL: z.string().url().optional(),
   CMS_BASE_URL: z.string().url().optional(),
   CMS_APP_ENTITLEMENT_SECRET: optionalNonEmpty,
   CMS_MODULE_ID: optionalNonEmpty,

@@ -43,7 +43,4 @@ next-env.d.ts
 *.pem
 *.log
 
-# Prisma
-prisma/*.db
-prisma/*.db-journal
 next-doctor-report.md
