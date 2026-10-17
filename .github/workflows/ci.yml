@@ -8,9 +8,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
-  issues: write
-  pull-requests: write
+  contents: read
   packages: read
 
 env:
@@ -25,7 +23,6 @@ jobs:
   test:
     name: Test
     runs-on: ubuntu-latest
-    if: github.event_name == 'pull_request' || github.event_name == 'workflow_dispatch'
     steps:
       - uses: actions/checkout@v6
         with:
@@ -61,51 +58,3 @@ jobs:
       - name: Build
         if: steps.guard.outputs.skip == 'false'
         run: npm run build
-
-  release:
-    name: Semantic Release
-    runs-on: ubuntu-latest
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-          persist-credentials: false
-
-      # Check for unresolved template placeholders — skip everything else if found
-      - name: Guard — skip if template not yet instantiated
-        id: guard
-        run: |
-          if grep -rq '{{' src/app/page.tsx package.json 2>/dev/null; then
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-            echo "⚠️  Unresolved template placeholders — skipping CI release job."
-          else
-            echo "skip=false" >> "$GITHUB_OUTPUT"
-          fi
-
-      - uses: actions/setup-node@v6
-        if: steps.guard.outputs.skip == 'false'
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
-
-      - name: Install dependencies
-        if: steps.guard.outputs.skip == 'false'
-        run: npm ci
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GH_PACKAGES_READ_TOKEN || secrets.GITHUB_TOKEN }}
-
-      - name: Build
-        if: steps.guard.outputs.skip == 'false'
-        run: npm run build
-
-      - name: Run Semantic Release
-        if: steps.guard.outputs.skip == 'false'
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GIT_AUTHOR_NAME: github-actions[bot]
-          GIT_AUTHOR_EMAIL: github-actions[bot]@users.noreply.github.com
-          GIT_COMMITTER_NAME: github-actions[bot]
-          GIT_COMMITTER_EMAIL: github-actions[bot]@users.noreply.github.com
-        run: npx semantic-release
