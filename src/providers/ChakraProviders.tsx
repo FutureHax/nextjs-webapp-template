@@ -5,6 +5,7 @@ import React from "react";
 
 import { system } from "@/theme";
 import { ColorModeProvider } from "@/providers/ColorModeProvider";
+import { EmotionRegistry } from "@/providers/EmotionRegistry";
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -12,8 +13,10 @@ interface ProvidersProps {
 
 export default function ChakraProviders({ children }: ProvidersProps) {
   return (
-    <ChakraProvider value={system}>
-      <ColorModeProvider>{children}</ColorModeProvider>
-    </ChakraProvider>
+    <EmotionRegistry>
+      <ChakraProvider value={system}>
+        <ColorModeProvider>{children}</ColorModeProvider>
+      </ChakraProvider>
+    </EmotionRegistry>
   );
 }
